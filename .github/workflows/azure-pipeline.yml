@@ -27,6 +27,14 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
 
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Verify Azure Login
+      run: az account show
+
     - name: Terraform Init
       run: terraform init
 
@@ -35,11 +43,6 @@ jobs:
 
     - name: Terraform Apply
       run: terraform apply -auto-approve tfplan
-
-    - name: Azure Login
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Deploy to Azure WebApp
       uses: azure/webapps-deploy@v2
