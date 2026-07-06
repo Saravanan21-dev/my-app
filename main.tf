@@ -3,7 +3,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = "resource_grp"
+  name     = "rg-github-cicd"
   location = "East US"
 }
 
